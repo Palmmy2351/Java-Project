@@ -17,6 +17,10 @@ public class MyFrame extends JFrame {
     Image bg = Toolkit.getDefaultToolkit().createImage(
         System.getProperty("user.dir") + File.separator + "background.jpg" 
     );
+    Image M1 = Toolkit.getDefaultToolkit().createImage(
+        System.getProperty("user.dir") + File.separator + "1.png" 
+    );
+
     MyPanel() {
         setSize(690, 800);
     }
@@ -24,6 +28,7 @@ public class MyFrame extends JFrame {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, this);
+        g.drawImage(M1, 100, 100, this);
     }     
  }
 
