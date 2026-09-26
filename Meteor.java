@@ -24,7 +24,7 @@ public class Meteor extends Thread{
     @Override
     public void run() {
         while (running) {
-            x = x + dx* speed; 
+            x = x + dx * speed; 
             y = y + dy * speed;
             panel.repaint();
             try {
