@@ -7,7 +7,7 @@ public class MyFrame extends JFrame {
     }
      public static void main(String[] args) {
         MyFrame frame = new MyFrame();
-        frame.add(new MyPanel());
+        frame.add(new Mypanel());
         frame.setVisible(true);
     }
 }
