@@ -1,6 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
-import java.io.*;
 public class MyFrame extends JFrame {
     MyFrame() {
         setSize(690, 800);
@@ -13,18 +11,18 @@ public class MyFrame extends JFrame {
         frame.setVisible(true);
     }
 }
- class MyPanel extends JPanel {
-    Image bg = Toolkit.getDefaultToolkit().createImage(
-        System.getProperty("user.dir") + File.separator + "background.jpg" 
-    );
+//  class MyPanel extends JPanel {
+//     Image bg = Toolkit.getDefaultToolkit().createImage(
+//         System.getProperty("user.dir") + File.separator + "background.jpg" 
+//     );
 
-    MyPanel() {
-        setSize(690, 800);
-    }
+//     MyPanel() {
+//         setSize(690, 800);
+//     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(bg, 0, 0, this);
-    }     
- }
+//     public void paintComponent(Graphics g) {
+//         super.paintComponent(g);
+//         g.drawImage(bg, 0, 0, this);
+//     }     
+//  }
 
