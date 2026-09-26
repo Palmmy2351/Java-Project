@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 public class MyFrame extends JFrame {
     Mypanel panel = new Mypanel();
-    JTextField textField = new JTextField(10);
+    JTextField textField = new JTextField();
     JButton button = new JButton("Creat Meteor");
     MyFrame() {
         setSize(690, 800);
