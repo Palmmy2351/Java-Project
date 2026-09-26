@@ -1,18 +1,25 @@
+
 import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 
-public class Mypanel extends JPanel{
+public class Mypanel extends JPanel {
+
     Image bg = Toolkit.getDefaultToolkit().createImage(
-        System.getProperty("user.dir") + File.separator + "background.jpg" 
+            System.getProperty("user.dir") + File.separator + "background.jpg"
     );
-    Image meteor [] ;
-    int meteorX [];
-    int meteorY [];
+    Image meteor[];
+    int meteorX[];
+    int meteorY[];
     int meteorCount;
     Meteor meteors[];
 
-    public void setMeteorCount(int count){
+    Image bomb;
+    int bombX;
+    int bombY;
+    boolean showBomb = false;
+
+    public void setMeteorCount(int count) {
         meteorCount = count;
         meteor = new Image[count];
         meteorX = new int[count];
@@ -20,12 +27,12 @@ public class Mypanel extends JPanel{
         meteors = new Meteor[count];
         for (int i = 0; i < count; i++) {
             meteor[i] = randomImage();
-            meteorX[i] = (int)(Math.random()*640);
-            meteorY[i] = (int)(Math.random()*650);
+            meteorX[i] = (int) (Math.random() * 640);
+            meteorY[i] = (int) (Math.random() * 650);
 
-            int speed = (int)(Math.random()* 5)+1;
+            int speed = (int) (Math.random() * 5) + 1;
 
-            meteors[i] = new Meteor(this,meteor[i],meteorX[i],meteorY[i],speed);
+            meteors[i] = new Meteor(this, meteor[i], meteorX[i], meteorY[i], speed);
             meteors[i].start();
         }
         repaint();
@@ -34,24 +41,88 @@ public class Mypanel extends JPanel{
     Mypanel() {
         setSize(690, 800);
     }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, this);
         for (int i = 0; i < meteorCount; i++) {
-                meteors[i].draw(g);
+            meteors[i].draw(g);
         }
-        
+
     }
 
     // Method to generate a random image for the meteor
     public Image randomImage() {
-        int randomNum = (int)(Math.random() * 10) + 1;
+        int randomNum = (int) (Math.random() * 10) + 1;
         Image img = Toolkit.getDefaultToolkit().createImage(
-            System.getProperty("user.dir") + File.separator + randomNum + ".png"
+                System.getProperty("user.dir") + File.separator + randomNum + ".png"
         );
         return img;
-       
+
     }
-    
+
+    public synchronized void checkCollision(Meteor current) {
+
+        if (!current.running) {
+            return;
+        }
+
+        for (int i = 0; i < meteors.length; i++) {
+
+            Meteor other = meteors[i];
+
+            if (other == null) {
+                continue;
+            }
+
+            if (other == current) {
+                continue;
+            }
+
+            if (!other.running) {
+                continue;
+            }
+
+            int distanceX = current.x - other.x;
+            int distanceY = current.y - other.y;
+
+            int distance = distanceX * distanceX
+                    + distanceY * distanceY;
+
+            // ชนกัน
+            if (distance <= 50 * 50) {
+
+                // สุ่มให้หาย 1 ลูก
+                if (Math.random() < 0.5) {
+                    current.explode();
+                    other.dx = -other.dx;
+                    other.dy = -other.dy;
+
+                    other.x += other.dx * 10;
+                    other.y += other.dy * 10;
+                    current.dx = -current.dx;
+                    current.dy = -current.dy;
+
+                    current.x += current.dx * 10;
+                    current.y += current.dy * 10;
+                } else {
+                    other.explode();
+                    current.dx = -current.dx;
+                    current.dy = -current.dy;
+
+                    current.x += current.dx * 10;
+                    current.y += current.dy * 10;
+                    other.dx = -other.dx;
+                    other.dy = -other.dy;
+
+                    other.x += other.dx * 10;
+                    other.y += other.dy * 10;
+                }
+
+                return;
+            }
+        }
+    }
+
 }
