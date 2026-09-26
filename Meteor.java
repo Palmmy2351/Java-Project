@@ -135,6 +135,7 @@ public class Meteor extends Thread {
     public void run() {
 
         while (running) {
+<<<<<<< HEAD
 
             // ขยับทุกครั้ง
             x += dx * speed;
@@ -165,6 +166,10 @@ public class Meteor extends Thread {
             // ตรวจการชน
             panel.checkCollision(this);
 
+=======
+            x = x + dx * speed; 
+            y = y + dy * speed;
+>>>>>>> 7308b9fe5c3494a0319d21aacd46b600c8616a8d
             panel.repaint();
 
             try {
