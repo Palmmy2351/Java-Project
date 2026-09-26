@@ -8,7 +8,7 @@ public class Meteor extends Thread{
     boolean running = true;
 
     Meteor(Mypanel panel, Image meteor, int x, int y, int speed) {
-        this.panel = panel;
+        this.panel = panel; 
         this.meteor = meteor;
         this.x = x;
         this.y = y;
@@ -17,7 +17,9 @@ public class Meteor extends Thread{
     @Override
     public void run() {
         while (running) {
-            x = x + speed; //ขยับไปแค่ทางขวา
+            x = x + speed; 
+            y = y + speed;
+            
             panel.repaint();
             try {
                 Thread.sleep(30);

@@ -11,16 +11,27 @@ public class Mypanel extends JPanel{
     int meteorX [];
     int meteorY [];
     int meteorCount;
+    Meteor meteors[];
 
     public void setMeteorCount(int count){
         meteorCount = count;
         meteor = new Image[count];
         meteorX = new int[count];
         meteorY = new int[count];
+        meteors = new Meteor[count];
         for (int i = 0; i < count; i++) {
             meteor[i] = randomImage();
             meteorX[i] = (int)(Math.random()*640);
-            meteorY[i] = (int)(Math.random()*750);
+            meteorY[i] = (int)(Math.random()*650);
+
+            meteors[i] = new Meteor(
+            this,
+            meteor[i],
+            meteorX[i],
+            meteorY[i],
+            2
+        );
+        meteors[i].start();
 
         }
         repaint();
@@ -34,7 +45,7 @@ public class Mypanel extends JPanel{
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, this);
         for (int i = 0; i < meteorCount; i++) {
-            g.drawImage(meteor[i],meteorX[i],meteorY[i],50, 50, this);
+            meteors[i].draw(g);
         }
         
     }
