@@ -20,7 +20,7 @@ public class Mypanel extends JPanel{
         for (int i = 0; i < count; i++) {
             meteor[i] = randomImage();
             meteorX[i] = (int)(Math.random()*640);
-            meteorY[i] = (int)(Math.random()*750);
+            meteorY[i] = (int)(Math.random()*650);
 
         }
         repaint();
