@@ -40,10 +40,11 @@ public class Mypanel extends JPanel{
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, this);
         for (int i = 0; i < meteorCount; i++) {
-            meteors[i].draw(g);
+                meteors[i].draw(g);
         }
         
     }
+
     // Method to generate a random image for the meteor
     public Image randomImage() {
         int randomNum = (int)(Math.random() * 10) + 1;
