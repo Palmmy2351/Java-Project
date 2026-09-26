@@ -1,13 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 public class MyFrame extends JFrame {
     Mypanel panel = new Mypanel();
     JTextField textField = new JTextField(10);
     JButton button = new JButton("Creat Meteor");
     MyFrame() {
-        setSize(690, 800);
+        setSize(690, 900);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
