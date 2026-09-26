@@ -2,7 +2,6 @@ import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 
-
 public class Mypanel extends JPanel{
     Image bg = Toolkit.getDefaultToolkit().createImage(
         System.getProperty("user.dir") + File.separator + "background.jpg" 
