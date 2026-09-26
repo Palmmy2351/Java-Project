@@ -1,13 +1,10 @@
 import java.awt.*;
 public class Meteor extends Thread{
     Mypanel panel;
-
     Image meteor;
-
     int x;
     int y;
     int speed;
-
     boolean running = true;
 
     Meteor(Mypanel panel, Image meteor, int x, int y, int speed) {
@@ -20,7 +17,7 @@ public class Meteor extends Thread{
     @Override
     public void run() {
         while (running) {
-            x = x + speed;
+            x = x + speed; //ขยับไปแค่ทางขวา
             panel.repaint();
             try {
                 Thread.sleep(30);
