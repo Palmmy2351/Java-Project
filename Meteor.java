@@ -76,7 +76,6 @@ public class Meteor extends Thread{
              }
         }
 
-
      public void draw(Graphics g) {
 
 
