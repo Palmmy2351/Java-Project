@@ -19,7 +19,6 @@ public class Meteor extends Thread{
         while (running) {
             x = x + speed; 
             y = y + speed;
-            
             panel.repaint();
             try {
                 Thread.sleep(30);
