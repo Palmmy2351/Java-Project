@@ -23,15 +23,12 @@ public class Mypanel extends JPanel{
             meteor[i] = randomImage();
             meteorX[i] = (int)(Math.random()*640);
             meteorY[i] = (int)(Math.random()*650);
-            meteors[i] = new Meteor(
-            this,
-            meteor[i],
-            meteorX[i],
-            meteorY[i],
-            2
-        );
-        meteors[i].start();
 
+            int speed = (int)(Math.random()* 5)+1;
+
+            meteors[i] = new Meteor(this,meteor[i],meteorX[i],meteorY[i],speed);
+
+            meteors[i].start();
         }
         repaint();
     }
