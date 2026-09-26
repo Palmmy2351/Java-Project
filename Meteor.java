@@ -42,13 +42,6 @@ public class Meteor extends Thread{
             do {
                 randomDirection();
             } while (dx < 0);
-
-
-
-
-
-
-
             }
 
                 if (x >= 640) {
