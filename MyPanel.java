@@ -23,6 +23,7 @@ public class Mypanel extends JPanel{
             meteor[i] = randomImage();
             meteorX[i] = (int)(Math.random()*640);
             meteorY[i] = (int)(Math.random()*650);
+<<<<<<< HEAD
 
             meteors[i] = new Meteor(
             this,
@@ -32,6 +33,8 @@ public class Mypanel extends JPanel{
             2
         );
         meteors[i].start();
+=======
+>>>>>>> b34ce97ecc2a0945b82c052a923ffb8a049f0573
 
         }
         repaint();
