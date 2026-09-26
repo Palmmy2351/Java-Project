@@ -40,40 +40,9 @@ public class Mypanel extends JPanel{
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, this);
         for (int i = 0; i < meteorCount; i++) {
-            if (meteors[i] != null) {
                 meteors[i].draw(g);
-            }
         }
         
-    }
-
-    public synchronized void checkCollision(Meteor current) {
-        for (int i = 0; i < meteorCount; i++) {
-            Meteor other = meteors[i];
-            if (other == null || other == current) {
-                continue;
-            }
-            if (!other.running || !current.running) {
-                continue;
-            }
-            Rectangle currentRect = new Rectangle(current.x, current.y, 50, 50);
-
-            Rectangle otherRect = new Rectangle(other.x, other.y, 50, 50);
-
-            if (currentRect.intersects(otherRect)) {
-                int currentIndex = -1;
-                for (int j = 0; j < meteorCount; j++) {
-                    if (meteors[j] == current) {
-                        currentIndex = j;
-                        break;
-                    }
-                }
-                if (currentIndex < i) {
-                    other.explode();
-                }
-                break;
-            }
-        }
     }
 
     // Method to generate a random image for the meteor
@@ -86,12 +55,3 @@ public class Mypanel extends JPanel{
        
     }
 }
-
-    public void checkCollision(Meteor meteor2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkCollision'");
-    }
-    public void checkCollision(Meteor meteor2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkCollision'");
-    }
