@@ -126,22 +126,12 @@ public class Mypanel extends JPanel {
                 current.explode();
 
                 // อีกลูกเด้งกลับ
-                other.dx = -other.dx;
-                other.dy = -other.dy;
-
-                other.x += other.dx * 10;
-                other.y += other.dy * 10;
 
             } else {
 
                 other.explode();
 
                 // อีกลูกเด้งกลับ
-                current.dx = -current.dx;
-                current.dy = -current.dy;
-
-                current.x += current.dx * 10;
-                current.y += current.dy * 10;
             }
 
             // แสดง bomb 0.5 วินาที
