@@ -8,6 +8,7 @@ public class Mypanel extends JPanel {
     Image bg = Toolkit.getDefaultToolkit().createImage(
             System.getProperty("user.dir") + File.separator + "background.jpg"
     );
+
     Image meteor[];
     int meteorX[];
     int meteorY[];
@@ -38,9 +39,16 @@ public class Mypanel extends JPanel {
         repaint();
     }
 
-    Mypanel() {
-        setSize(690, 800);
-    }
+   Mypanel() {
+
+    setSize(690, 800);
+
+    bomb = Toolkit.getDefaultToolkit().createImage(
+        System.getProperty("user.dir")
+        + File.separator
+        + "bomb.gif"
+    );
+}
 
     @Override
     public void paintComponent(Graphics g) {
@@ -49,6 +57,17 @@ public class Mypanel extends JPanel {
         for (int i = 0; i < meteorCount; i++) {
             meteors[i].draw(g);
         }
+
+        if (showBomb) {
+        g.drawImage(
+            bomb,
+            bombX - 40,
+            bombY - 40,
+            130,
+            130,
+            this
+        );
+    }
 
     }
 
@@ -62,67 +81,85 @@ public class Mypanel extends JPanel {
 
     }
 
-    public synchronized void checkCollision(Meteor current) {
+   public synchronized void checkCollision(Meteor current) {
 
-        if (!current.running) {
-            return;
+    if (!current.running) {
+        return;
+    }
+
+    for (int i = 0; i < meteors.length; i++) {
+
+        Meteor other = meteors[i];
+
+        if (other == null) {
+            continue;
         }
 
-        for (int i = 0; i < meteors.length; i++) {
+        if (other == current) {
+            continue;
+        }
 
-            Meteor other = meteors[i];
+        if (!other.running) {
+            continue;
+        }
 
-            if (other == null) {
-                continue;
+        int distanceX = current.x - other.x;
+        int distanceY = current.y - other.y;
+
+        int distance = distanceX * distanceX
+                + distanceY * distanceY;
+
+        // ชนกัน
+        if (distance <= 50 * 50) {
+
+            // แสดงระเบิดตรงจุดชน
+            bombX = (current.x + other.x) / 2;
+            bombY = (current.y + other.y) / 2;
+
+            showBomb = true;
+
+            repaint();
+
+            // สุ่มให้อุกกาบาตหาย 1 ลูก
+            if (Math.random() < 0.5) {
+
+                current.explode();
+
+                // อีกลูกเด้งกลับ
+                other.dx = -other.dx;
+                other.dy = -other.dy;
+
+                other.x += other.dx * 10;
+                other.y += other.dy * 10;
+
+            } else {
+
+                other.explode();
+
+                // อีกลูกเด้งกลับ
+                current.dx = -current.dx;
+                current.dy = -current.dy;
+
+                current.x += current.dx * 10;
+                current.y += current.dy * 10;
             }
 
-            if (other == current) {
-                continue;
-            }
+            // แสดง bomb 0.5 วินาที
+            new Thread(() -> {
 
-            if (!other.running) {
-                continue;
-            }
-
-            int distanceX = current.x - other.x;
-            int distanceY = current.y - other.y;
-
-            int distance = distanceX * distanceX
-                    + distanceY * distanceY;
-
-            // ชนกัน
-            if (distance <= 50 * 50) {
-
-                // สุ่มให้หาย 1 ลูก
-                if (Math.random() < 0.5) {
-                    current.explode();
-                    other.dx = -other.dx;
-                    other.dy = -other.dy;
-
-                    other.x += other.dx * 10;
-                    other.y += other.dy * 10;
-                    current.dx = -current.dx;
-                    current.dy = -current.dy;
-
-                    current.x += current.dx * 10;
-                    current.y += current.dy * 10;
-                } else {
-                    other.explode();
-                    current.dx = -current.dx;
-                    current.dy = -current.dy;
-
-                    current.x += current.dx * 10;
-                    current.y += current.dy * 10;
-                    other.dx = -other.dx;
-                    other.dy = -other.dy;
-
-                    other.x += other.dx * 10;
-                    other.y += other.dy * 10;
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
                 }
 
-                return;
-            }
+                showBomb = false;
+                repaint();
+
+            }).start();
+
+            return;
         }
     }
+}
 
 }
