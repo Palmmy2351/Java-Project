@@ -19,7 +19,7 @@ public class MyFrame extends JFrame {
         controlPanel.add(textField);
         controlPanel.add(button);
 
-        add(panel);
+        add(panel, BorderLayout.CENTER);
         add(controlPanel, BorderLayout.SOUTH);
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
