@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
 public class MyFrame extends JFrame {
     Mypanel panel = new Mypanel();
     JTextField textField = new JTextField(10);
@@ -23,7 +24,6 @@ public class MyFrame extends JFrame {
                 int count = Integer.parseInt(textField.getText());
                 panel.setMeteorCount(count);
             }
-            
         });
     }
      public static void main(String[] args) {

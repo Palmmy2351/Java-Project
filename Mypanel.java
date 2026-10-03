@@ -1,20 +1,16 @@
-
 import java.awt.*;
 import java.io.*;
 import javax.swing.*;
 
 public class Mypanel extends JPanel {
 
-    Image bg = Toolkit.getDefaultToolkit().createImage(
-            System.getProperty("user.dir") + File.separator + "background.jpg"
-    );
+    Image bg = Toolkit.getDefaultToolkit().createImage(System.getProperty("user.dir") + File.separator + "background.jpg");
 
     Image meteor[];
     int meteorX[];
     int meteorY[];
     int meteorCount;
     Meteor meteors[];
-
     Image bomb;
     int bombX;
     int bombY;
@@ -39,16 +35,10 @@ public class Mypanel extends JPanel {
         repaint();
     }
 
-   Mypanel() {
-
-    setSize(690, 800);
-
-    bomb = Toolkit.getDefaultToolkit().createImage(
-        System.getProperty("user.dir")
-        + File.separator
-        + "bomb.gif"
-    );
-}
+    Mypanel() {
+        setSize(690, 800);
+        bomb = Toolkit.getDefaultToolkit().createImage(System.getProperty("user.dir") + File.separator + "bomb.gif" );
+    }
 
     @Override
     public void paintComponent(Graphics g) {
@@ -59,92 +49,61 @@ public class Mypanel extends JPanel {
         }
 
         if (showBomb) {
-        g.drawImage(
-            bomb,
-            bombX - 40,
-            bombY - 40,
-            130,
-            130,
-            this
-        );
+        g.drawImage( bomb, bombX - 40, bombY - 40, 130,130, this);
+        }
     }
 
-    }
-
-    // Method to generate a random image for the meteor
     public Image randomImage() {
         int randomNum = (int) (Math.random() * 10) + 1;
-        Image img = Toolkit.getDefaultToolkit().createImage(
-                System.getProperty("user.dir") + File.separator + randomNum + ".png"
-        );
+        Image img = Toolkit.getDefaultToolkit().createImage(System.getProperty("user.dir") + File.separator + randomNum + ".png");
         return img;
-
     }
 
-   public synchronized void checkCollision(Meteor current) {
-
-    if (!current.running) {
-        return;
-    }
-
-    for (int i = 0; i < meteors.length; i++) {
-
-        Meteor other = meteors[i];
-
-        if (other == null) {
-            continue;
-        }
-
-        if (other == current) {
-            continue;
-        }
-
-        if (!other.running) {
-            continue;
-        }
-
-        int distanceX = current.x - other.x;
-        int distanceY = current.y - other.y;
-
-        int distance = distanceX * distanceX
-                + distanceY * distanceY;
-
-        // ชนกัน
-        if (distance <= 50 * 50) {
-
-            // แสดงระเบิดตรงจุดชน
-            bombX = (current.x + other.x) / 2;
-            bombY = (current.y + other.y) / 2;
-
-            showBomb = true;
-
-            repaint();
-
-            // สุ่มให้อุกกาบาตหาย 1 ลูก
-            if (Math.random() < 0.5) {
-
-                current.explode();
-            } else {
-
-                other.explode();
-            }
-
-            // แสดง bomb 0.5 วินาที
-            new Thread(() -> {
-
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                }
-
-                showBomb = false;
-                repaint();
-
-            }).start();
-
+    public synchronized void checkCollision(Meteor current) {
+        if (!current.running) {
             return;
         }
-    }
-}
+        for (int i = 0; i < meteors.length; i++) {
+            Meteor other = meteors[i];
+            if (other == null) {
+                continue;
+            }
+            if (other == current) {
+                continue;
+            }
+            if (!other.running) {
+                continue;
+            }
+            int distanceX = current.x - other.x;
+            int distanceY = current.y - other.y;
+            int distance = distanceX * distanceX + distanceY * distanceY;
 
+            // ชนกัน
+            if (distance <= 50 * 50) {
+                // แสดงระเบิดตรงจุดชน
+                bombX = (current.x + other.x) / 2;
+                bombY = (current.y + other.y) / 2;
+                showBomb = true;
+
+                repaint();
+
+                // สุ่มให้อุกกาบาตหาย 1 ลูก
+                if (Math.random() < 0.5) {
+                    current.explode();
+                } else {
+
+                    other.explode();
+                }
+                // แสดง bomb 0.5 วินาที
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {}
+                    showBomb = false;
+                    repaint();
+                }).start();
+                return;
+            }
+        }
+    }
 }
