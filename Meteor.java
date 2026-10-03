@@ -47,11 +47,8 @@ public class Meteor extends Thread{
         }
     }
 
-<<<<<<< HEAD
-     @Override
-=======
+
     @Override
->>>>>>> 67322e52c664fc35a3e4b88147d121910e509db3
     public void run() {
     while (running) {
         x = x + dx * speed;
