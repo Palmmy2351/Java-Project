@@ -5,7 +5,7 @@ import javax.swing.*;
 public class MyFrame extends JFrame {
     Mypanel panel = new Mypanel();
     JTextField textField = new JTextField(10);
-    JButton button = new JButton("Creat Meteor");
+    JButton button = new JButton("Create Meteor");
     MyFrame() {
         setSize(690, 850);
         setResizable(false);
