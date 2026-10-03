@@ -124,14 +124,9 @@ public class Mypanel extends JPanel {
             if (Math.random() < 0.5) {
 
                 current.explode();
-
-                // อีกลูกเด้งกลับ
-
             } else {
 
                 other.explode();
-
-                // อีกลูกเด้งกลับ
             }
 
             // แสดง bomb 0.5 วินาที

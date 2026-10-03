@@ -19,15 +19,32 @@ public class Meteor extends Thread{
         randomDirection();
     }
     public void randomDirection(){
-        int[][] directions = {{1, 0},{-1, 0},{0, 1},{0, -1},{1, 1},{-1, 1},{1, -1},{-1, -1}} ;
         int direction =(int)(Math.random()*8);
-
-
-
-
-        dx = directions[direction][0];
-        dy = directions[direction][1];
-
+        if(direction == 0){
+            dx = 1;
+            dy = 0;
+        }else if(direction == 1){
+            dx = 1;
+            dy = 1;
+        }else if(direction == 2){
+            dx = 0;
+            dy = 1;
+        }else if(direction == 3){
+            dx = -1;
+            dy = 1;
+        }else if(direction == 4){
+            dx = -1;
+            dy = 0;
+        }else if(direction == 5){
+            dx = -1;
+            dy = -1;
+        }else if(direction == 6){
+            dx = 0;
+            dy = -1;
+        }else if(direction == 7){
+            dx = 1;
+            dy = -1;
+        }
     }
 
     // @Override
