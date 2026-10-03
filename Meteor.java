@@ -47,7 +47,11 @@ public class Meteor extends Thread{
         }
     }
 
+<<<<<<< HEAD
+     @Override
+=======
     @Override
+>>>>>>> 67322e52c664fc35a3e4b88147d121910e509db3
     public void run() {
     while (running) {
         x = x + dx * speed;
@@ -97,18 +101,12 @@ public class Meteor extends Thread{
         }
     }
 }
-
     public void explode() {
     running = false;
     interrupt();
     panel.repaint();
 }
-
      public void draw(Graphics g) {
-
-
-
-
         if (running) {
             g.drawImage(meteor, x, y, 50, 50, panel);
         }
