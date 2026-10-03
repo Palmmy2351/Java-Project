@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.*;
 
 public class MyFrame extends JFrame {
     Mypanel panel = new Mypanel();
@@ -11,6 +12,7 @@ public class MyFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
         JPanel controlPanel = new JPanel();
         controlPanel.add(new JLabel("Number of meteorites"));
@@ -18,7 +20,7 @@ public class MyFrame extends JFrame {
         controlPanel.add(button);
 
         add(panel);
-        add(controlPanel,"South");
+        add(controlPanel, BorderLayout.SOUTH);
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 int count = Integer.parseInt(textField.getText());
