@@ -30,51 +30,6 @@ public class Meteor extends Thread{
 
     }
 
-    // @Override
-    // public void run() {
-    //     while (running) {
-    //         x = x + dx* speed; 
-    //         y = y + dy * speed;
-
-    //         if (x <= 0) {
-    //         x = 0;
-    //         speed++;
-    //         do {
-    //             randomDirection();
-    //         } while (dx < 0);
-    //         }
-
-    //             if (x >= 640) {
-    //                 x = 640;
-    //                 speed++;
-    //                 do {
-    //                     randomDirection();
-    //                 } while (dx > 0);
-    //             }
-
-    //             if (y <= 0) {
-    //                 y = 0;
-    //                 speed++;
-    //                 do {
-    //                     randomDirection();
-    //                 } while (dy < 0);
-    //             }
-
-    //             if (y >= 750) {
-    //                 y = 750;
-    //                 speed++;
-    //                 do {
-    //                     randomDirection();
-    //                 } while (dy > 0);
-    //             }
-    //                 panel.repaint();
-    //                 try {
-    //                     Thread.sleep(30);
-    //                 } catch (InterruptedException e) {
-    //                     break;
-    //                 }
-    //          }
-    //     }
      @Override
     public void run() {
     while (running) {
