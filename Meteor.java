@@ -97,18 +97,12 @@ public class Meteor extends Thread{
         }
     }
 }
-
     public void explode() {
     running = false;
     interrupt();
     panel.repaint();
 }
-
      public void draw(Graphics g) {
-
-
-
-
         if (running) {
             g.drawImage(meteor, x, y, 50, 50, panel);
         }
