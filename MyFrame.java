@@ -7,6 +7,7 @@ public class MyFrame extends JFrame {
     JButton button = new JButton("Creat Meteor");
     MyFrame() {
         setSize(690, 900);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
