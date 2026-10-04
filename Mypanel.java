@@ -78,28 +78,29 @@ public class Mypanel extends JPanel {
             int distanceY = current.y - other.y;
             int distance = distanceX * distanceX + distanceY * distanceY;
 
-            // ชนกัน
             if (distance <= 50 * 50) {
-                // แสดงระเบิดตรงจุดชน
                 bombX = (current.x + other.x) / 2;
                 bombY = (current.y + other.y) / 2;
                 showBomb = true;
                 
                 repaint();
-                // สุ่มให้อุกกาบาตหาย 1 ลูก
+
                 if (Math.random() < 0.5) {
                     current.explode();
                 } else {
 
                     other.explode();
                 }
-                // แสดง bomb 0.5 วินาที
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {}
-                    showBomb = false;
-                    repaint();
+
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {}
+
+                        showBomb = false;
+                        repaint();
+                    }
                 }).start();
                 return;
             }
