@@ -84,9 +84,8 @@ public class Mypanel extends JPanel {
                 bombX = (current.x + other.x) / 2;
                 bombY = (current.y + other.y) / 2;
                 showBomb = true;
-
+                
                 repaint();
-
                 // สุ่มให้อุกกาบาตหาย 1 ลูก
                 if (Math.random() < 0.5) {
                     current.explode();
